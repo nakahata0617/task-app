@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Quest</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="login-screen">
+        <h1><i class="fa-solid fa-dragon"></i> Productivity Quest</h1>
+        <button id="login-button"><i class="fa-brands fa-google"></i> Googleでログイン</button>
+    </div>
+
+    <div id="app-container" class="app-container" style="display: none;">
+        <header class="app-header">
+            <div class="user-profile">
+                <img id="user-avatar" src="avatars/default.png" alt="User Avatar" class="avatar">
+                <h1>Productivity Quest</h1>
+            </div>
+            <button id="logout-button" title="ログアウト"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </header>
+
+        <main>
+            <section class="dashboard">
+                <div class="stat-card">
+                    <h4>レベル</h4>
+                    <p><i class="fa-solid fa-star"></i> <span id="user-level">1</span></p>
+                    <div class="xp-bar-container">
+                        <div id="xp-bar" class="xp-bar"></div>
+                    </div>
+                    <small id="xp-text">0 / 50 XP</small>
+                </div>
+                <div class="stat-card">
+                    <h4>挑戦中のクエスト</h4>
+                    <p><span id="today-tasks">0</span></p>
+                </div>
+                <div class="stat-card">
+                    <h4>連続達成</h4>
+                    <p><i class="fa-solid fa-fire"></i> 0日</p>
+                </div>
+            </section>
+
+            <section class="achievements-area">
+                <h3><i class="fa-solid fa-trophy"></i> 実績</h3>
+                <div id="achievements-list" class="achievements-list">
+                    </div>
+            </section>
+
+            <section class="input-area">
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-pencil"></i>
+                    <input type="text" id="task-input" placeholder="新しいクエストを追加...">
+                </div>
+                <div class="input-options">
+                    <input type="date" id="due-date-input" title="期限日">
+                    <select id="priority-input" title="優先度">
+                        <option value="low">低 (10XP)</option>
+                        <option value="medium" selected>中 (15XP)</option>
+                        <option value="high">高 (25XP)</option>
+                    </select>
+                    <button id="add-button"><i class="fa-solid fa-plus"></i> 追加</button>
+                </div>
+            </section>
+
+            <section class="task-container">
+                <div class="filter-area">
+                    <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-list-ul"></i> すべて</button>
+                    <button class="filter-btn" data-filter="active"><i class="fa-solid fa-person-running"></i> 挑戦中</button>
+                    <button class="filter-btn" data-filter="completed"><i class="fa-solid fa-trophy"></i> 達成済み</button>
+                </div>
+                <ul id="task-list">
+                    </ul>
+            </section>
+        </main>
+    </div>
+
+    <div id="avatar-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2>アバターを選択</h2>
+            <div id="avatar-selection-grid" class="avatar-grid">
+                </div>
+            <button id="close-modal-button" class="close-button">&times;</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script>
+      // あなたの新しい、正しいfirebaseConfig
+      const firebaseConfig = {
+        apiKey: "AIzaSyByFYK3vsjd81di2GKzhlqWcVPpTkapC_s",
+        authDomain: "quest-app-final.firebaseapp.com",
+        projectId: "quest-app-final",
+        storageBucket: "quest-app-final.firebasestorage.app",
+        messagingSenderId: "272120418471",
+        appId: "1:272120418471:web:129ce9451ead2f61520b82",
+        measurementId: "G-W73FYD2JPS"
+      };
+      
+      // Firebaseを初期化
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
