@@ -46,7 +46,7 @@
 
 ### デモ動画
 
-**Youtubeリンク**: ここにあなたのYouTube動画のURLを貼り付けてください
+**Youtubeリンク**: https://youtu.be/veRDTKwsihU
 
 ---
 
